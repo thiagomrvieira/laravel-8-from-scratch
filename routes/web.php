@@ -18,17 +18,18 @@ Route::get('/', function () {
 });
 
 Route::get('posts/{post}', function ($slug) {
-    
-    $path = __DIR__ . "/../resources/posts/{$slug}.html";
 
-    if (! file_exists($path) ) {
-        // abort(404);
+    if (!file_exists( $path = __DIR__ . "/../resources/posts/{$slug}.html" ) ) {
         return redirect('/');
     }
     
-    $post = file_get_contents($path);
+    // $post = cache()->remember("posts.{$slug}", 3600, function() use($path) {
+    //     return file_get_contents($path);
+    // });
+
+    //  The same in php 7
+    $post = cache()->remember("posts.{$slug}", 3600, fn() => file_get_contents($path));
     
-    return view('post', [
-        'post' => $post
-    ]);
+    return view('post', ['post' => $post]);
+
 })->where('post', '[A-z_\-]+');
