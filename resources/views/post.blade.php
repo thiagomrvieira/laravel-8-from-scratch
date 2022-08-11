@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>My blog</title>
-    <link rel="stylesheet" href="/app.css">
-</head>
-<body>
+@extends('layout')
+
+@section('content')
     <article>
         <h1> {{$post->title}}</h1>
         <div>
@@ -13,5 +9,5 @@
     </article>    
 
     <a href="/">Go back</a>
-</body>
-</html>
+@endsection
+    
