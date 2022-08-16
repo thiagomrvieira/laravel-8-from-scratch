@@ -21,4 +21,10 @@ class Post extends Model
 
     #   Doesn't permit mass assignment
     // protected $guarded = [];
+    
+    #   Used to set the model binding by a differente identifier
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

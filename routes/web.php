@@ -22,11 +22,17 @@ Route::get('/', function () {
         'posts' => Post::all()
     ]);
 });
+#   Get the Post by Id
+// Route::get('posts/{post}', function (Post $post) {
 
-Route::get('posts/{post}', function ($id) {
+#   Get the Post by the Slug
+// Route::get('posts/{post:slug}', function (Post $post) {
+
+#   Get the Post by the Slug but it's necessary to add the getRouteKeyName in the model
+Route::get('posts/{post}', function (Post $post) {
 
     return view('post', [
-        'post' => Post::findOrFail($id)
+        'post' => $post
     ]);
 
 });
