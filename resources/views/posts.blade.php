@@ -8,6 +8,9 @@
                 </a>
             </h1>
             <div> 
+                <p>
+                    <a href="#">{{ $post->category->name }}</a>
+                </p>
                 {!! $post->excerpt !!}
             </div>
         </article>    
