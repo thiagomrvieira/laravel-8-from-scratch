@@ -14,6 +14,10 @@ class Post extends Model
         'title', 'excerpt', 'body'
     ];
 
+    protected $with = [
+        'category', 'author'
+    ];
+
     #   Everything is fillable except the values in the array
     // protected $guarded = [
     //     'id',
