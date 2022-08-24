@@ -24,7 +24,7 @@ Route::get('/', function () {
         'posts'      => Post::latest()->with('category', 'author')->get(),
         'categories' => Category::all()
     ]);
-});
+})->name('home');
 
 #   Get the Post by Id
 // Route::get('posts/{post}', function (Post $post) {
@@ -51,7 +51,7 @@ Route::get('categories/{category}', function (Category $category) {
         'categories' => Category::all()
     ]);
 
-});
+})->name('category');
 
 Route::get('authors/{author:username}', function (User $author) {
 
