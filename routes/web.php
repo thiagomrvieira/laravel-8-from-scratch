@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -18,13 +19,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-
-    return view('posts', [
-        'posts'      => Post::latest()->with('category', 'author')->get(),
-        'categories' => Category::all()
-    ]);
-})->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 #   Get the Post by Id
 // Route::get('posts/{post}', function (Post $post) {
@@ -33,14 +28,7 @@ Route::get('/', function () {
 // Route::get('posts/{post:slug}', function (Post $post) {
 
 #   Get the Post by the Slug but it's necessary to add the getRouteKeyName in the model
-Route::get('posts/{post}', function (Post $post) {
-
-    return view('post', [
-        'post' => $post,
-        'categories' => Category::all()
-    ]);
-
-});
+Route::get('posts/{post}', [PostController::class, 'show']);
 
 #   Get the Post by the Slug but it's necessary to add the getRouteKeyName in the model
 Route::get('categories/{category}', function (Category $category) {
