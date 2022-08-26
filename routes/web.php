@@ -30,22 +30,12 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 #   Get the Post by the Slug but it's necessary to add the getRouteKeyName in the model
 Route::get('posts/{post}', [PostController::class, 'show']);
 
-#   Get the Post by the Slug but it's necessary to add the getRouteKeyName in the model
-Route::get('categories/{category}', function (Category $category) {
-
-    return view('posts', [
-        'posts' => $category->posts,
-        'currentCategory' => $category,
-        'categories' => Category::all()
-    ]);
-
-})->name('category');
-
 Route::get('authors/{author:username}', function (User $author) {
 
     return view('posts', [
         'posts' => $author->posts,
-        'categories' => Category::all()
+        'categories' => Category::all(),
+        'currentCategory' => Category::firstWhere('slug', request('category'))
     ]);
 
 });
